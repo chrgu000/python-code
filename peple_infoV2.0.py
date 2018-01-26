@@ -24,6 +24,7 @@
 '''
 import sys, codecs
 
+
 errorInfo = '''
 +--------------------------------+
 |             FAILD              |
@@ -36,7 +37,7 @@ errorInfo = '''
 dyadicList = ['user_info', 'user_deleted']  #二维列表文件
 
 def openFiles(filepath,permission='a+', cod= 'utf-8'):   #读取文件信息到列表
-    f = codecs.open(filepath,permission,cod)    
+    f = codecs.open(filepath,permission,cod)
     f.seek(0,)
     infoList = f.readlines()
     for x in range(len(infoList)):
@@ -64,7 +65,7 @@ def userExists(name):
         if name == x[0]:
             someone = 2
     return someone
-        
+
 
 def userInfoShowAll():
     if len(userInfoList) > 0:
@@ -87,7 +88,7 @@ def userNameShowAll():
     else:
         print(errorInfo % ('当前没有任何用户'))
         return False
-        
+
 def userInfoShowOne(*name):
     someone = False
     if len(userInfoList) > 0:
@@ -106,10 +107,10 @@ def userInfoShowOne(*name):
     else:
         print(errorInfo % ('当前没有任何用户'))
 
-        
+
 def userAdd():    #添加用户，姓名不可重复
     user = []  #临时用户表，用来存储单个用户有信息
-    bye = False   #退出外层循环判断使用    
+    bye = False   #退出外层循环判断使用
     for x in ['姓名', '性别', '年龄', '城市']:
         while 1:   #死循环禁止输入空字符
             d = input('请输入用户 %s: ' % (x)).strip()  # .strip用于去掉前后的空格
@@ -136,8 +137,8 @@ def userAdd():    #添加用户，姓名不可重复
             user.append(d)
     if not bye:
         userInfoList.append(user)
-        
-        
+
+
 def userChange():    #修改用户信息
     #userChangeDict = {'1':pass, '2':pass, '3':pass, '4':pass}
     userNameShowAll()
@@ -183,20 +184,19 @@ def userChange():    #修改用户信息
     else:
         print(errorInfo % ('查无此人：%s' % (e)))
 
-        
+
 def userDelete():   #删除用户
-    someone = False
     if userNameShowAll() != False:
+        someone = False
         g = input('\n请输入要删除的用户姓名：').strip()
-        for x in userInfoList:
-            if g in x:
-                infoNum = userInfoList.index(x)
-                userDeletedList.append(x)
-                userInfoList.pop(infoNum)
-                print('%s 删除成功！' % (g))
+        for x in range(len(userInfoList)):
+            if userInfoList[x][0] == g:
+                userDeletedList.append(userInfoList.pop(x))   # 删除并添加到已删除表里
                 someone = True
-        if not someone:
+                print('%s 删除成功！' % (g))
+        if not(someone):
             print(errorInfo % ('没有此用户'))
+
 
 def ageThanNum():
     try:
@@ -210,7 +210,7 @@ def ageThanNum():
             print(errorInfo %('没有符合条件的用户'))
     except ValueError as e:  #没有正确输入数字报错
         print(errorInfo % ('请输入正确的数字'))
-        
+
 def ageLessNum():
     try:
         num = int(input('\n小于指定的年龄：'))
@@ -223,7 +223,7 @@ def ageLessNum():
             print(errorInfo % ('没有符合条件的用户'))
     except ValueError as e:  #没有正确输入数字报错
         print(errorInfo % ('请输入正确的年龄'))
-       
+
 def userDeletedShow():
     if len(userDeletedList) > 0:
         print('已删除用户：')
@@ -231,7 +231,7 @@ def userDeletedShow():
             print('姓名：%s  性别：%s  年龄：%s  城市：%s' % (x[0], x[1], x[2], x[3]))
     else:
         print(errorInfo % ('当前没有已删除用户'))
-        
+
 def exitSystem():
     fileUserInfo.close()
     fileUserDeleted.close()
@@ -256,7 +256,7 @@ def menuHome():
             menuHomeDict[userInput]()
         else:
             print(errorInfo % ('输入有误，请重新输入'))
-    
+
 def menuQuery():
     menuQueryDict = {'0':menuHome, '1':userNameShowAll, '2':userInfoShowOne, '3':ageThanNum, '4':ageLessNum, '5':userDeletedShow}
     while 1:
@@ -276,7 +276,7 @@ def menuQuery():
             menuQueryDict[userInput]()
         else:
             print(errorInfo % ('输入有误，请重新输入'))
-            
+
 def menuChange():
     menuChangeDict = {'0':menuHome, '1':userAdd, '2':userChange, '3':userDelete}
     while 1:
@@ -295,5 +295,5 @@ def menuChange():
         else:
             print(errorInfo % ('输入有误，请重新输入'))
 
-           
+
 menuHome()  #调用主目录开始

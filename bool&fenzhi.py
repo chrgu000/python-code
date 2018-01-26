@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 '''
 bool与分支，判断输入类型
 '''
@@ -14,4 +14,3 @@ except ValueError as e:
             print('no int and no str')
     else:
         print('没有任何输入')
-
