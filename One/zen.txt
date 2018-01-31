@@ -1,0 +1,46 @@
+File   : Windows Loader.exe
+CRC-32 : adf01c0f
+MD4    : b786b7f1a94b637533600d31d92d49cd
+MD5    : 3976bd5fcbb7cd13f0c12bb69afc2adc
+SHA-1  : 3b6bdca414a53df7c8c5096b953c4df87a1091c7
+
+
+
+##########################################################################
+#   7   -   Changes
+##########################################################################
+Version 2.2.1
+* Added a new GRLDR
+* Redesigned the advanced options tab and added an option to relocate the RSDP to the EBDA
+* Added Seneca and Twinhead Windows 7 Professional keys
+* Added BenQ Windows 7 Home Premium key
+* Added Seneca SLIC and certificate
+* Other minor tweaks and fixes
+
+Version 2.2
+* Fixed Xen detection
+* Fixed a small issue with some decoded keys
+* Pressing the delete key will now remove the OEM picture
+* Other minor tweaks and fixes
+
+Version 2.1.9
+* Added a new GRLDR
+* Blocked the loader from installing onto Xen as it's not supported
+* Added notes about Windows Server 2012 and Windows 8 to the read me file
+
+Version 2.1.8
+* Added a new GRLDR (required to support Server 2012 operating systems)
+* Added support for Windows Server 2012 Standard, Essentials, Foundation & Datacenter
+* Added support for Windows Storage Server 2012 Standard & Workgroup
+* Added support for Windows MultiPoint Server 2012 Standard & Premium
+* Added HEDY Windows 7 Ultimate key
+* Added ByteSpeed, DakTech, Genuine C&C, INSYS, WIPRO & Zoostorm Windows 7 Professional keys
+* Added ByteSpeed & INSYS Windows 7 Home Premium keys
+* Added AOC & ByteSpeed Windows 7 Starter keys
+* Added AOC, ByteSpeed, EXTRA Computer GmbH, Mustek, Velocity and Western Digital v2.1 SLIC's and certificates
+* Added a Dell v2.2 SLIC to activate 2012 server editions (only recommended for Server 2012 unless you're dual booting with Windows 7/Vista)
+* Added new launch parameters
+* Fixed a Windows key decoding bug
+* Fixed the "Licensed" text color for BIOS activated systems
+* Other minor tweaks and fixes
+Ending!
