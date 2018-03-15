@@ -226,7 +226,7 @@ class MyFrame(wx.Frame):
         self.mf = MyFile()
         self.dianfei_list = self.mf.fRead()
         print(self.dianfei_list)
-        for x in self.dianfei_list:
+        '''for x in self.dianfei_list:
             self.text_show.AppendText("""
                 +----------------------+
                 |--%s%10s--|
@@ -237,6 +237,21 @@ class MyFrame(wx.Frame):
                  %s%4d%8d
                  %s%4d%8d
                 """  % (self.msg[0],x[0],
+                        self.msg[1],x[1],x[5],
+                        self.msg[2],x[2],x[6],
+                        self.msg[3],x[3],x[7],
+                        self.msg[4],x[4],x[8]))'''
+        for x in self.dianfei_list:
+            self.text_show.AppendText("""
+                +----------------------+
+                |--{}{:^10}--|
+                |------------------------|
+                | 表箱 |   余电  |  充值 |
+                 {}{:<6}{:>8}
+                 {}{:<6}{:>8}
+                 {}{:<6}{:>8}
+                 {}{:<6}{:>8}
+                """.format(self.msg[0],x[0],
                         self.msg[1],x[1],x[5],
                         self.msg[2],x[2],x[6],
                         self.msg[3],x[3],x[7],
@@ -280,10 +295,14 @@ class MyFrame(wx.Frame):
         # 计算希望使用多少天需要多少电数
         # 上一次电费的余额加上充值数再减去本次余电数，除以用过的天数，乘以希望用的天数
         # int 取整
-        result_506 = int((dl[1]+dl[5]-int(self.text_506.GetValue()))/days)*int(self.day_text.GetValue())
-        result_507 = int((dl[2]+dl[6]-int(self.text_507.GetValue()))/days)*int(self.day_text.GetValue())
-        result_508 = int((dl[3]+dl[7]-int(self.text_508.GetValue()))/days)*int(self.day_text.GetValue())
-        result_509 = int((dl[4]+dl[8]-int(self.text_509.GetValue()))/days)*int(self.day_text.GetValue())
+        result_506 = round(int((dl[1]+dl[5]-int(self.text_506.GetValue()))/days)
+                            * int(self.day_text.GetValue()), -2)
+        result_507 = round(int((dl[2]+dl[6]-int(self.text_507.GetValue()))/days)
+                            *int(self.day_text.GetValue()), -2)
+        result_508 = round(int((dl[3]+dl[7]-int(self.text_508.GetValue()))/days)
+                        *int(self.day_text.GetValue()), -2)
+        result_509 = round(int((dl[4]+dl[8]-int(self.text_509.GetValue()))/days)
+            *int(self.day_text.GetValue()), -2)
         # 计算充值需要的金额，单价为1.3元/度
         result_cost = (result_506+result_507+result_508+result_509)*1.3
         # 将值写入充值框

@@ -14,3 +14,11 @@ print(message)
 message = "This is New Messgae"
 
 print(message)
+
+names = ['bob', 'han', 'zhan']
+
+for name in names:
+    print(name)
+print('====', name)
+
+print(message, '---------', name)
