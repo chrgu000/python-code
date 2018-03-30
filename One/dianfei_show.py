@@ -14,8 +14,7 @@ class ShowFrame(wx.Frame):
 
     def  __init__(self, title_name, labels):
         """用于初始化属性"""
-        self.title_name = title_name
-        wx.Frame.__init__(self, None, -1, self.title_name, size=(280, 280))
+        wx.Frame.__init__(self, None, -1, title_name, size=(280, 280))
         self.labels = labels
         self.SetMinSize((280, 280))
         self.SetMaxSize((280, 280))
