@@ -22,7 +22,8 @@ class Ship(Sprite):
         self.ai_settings = ai_setting
 
         # 加载飞船图像并获取其外接矩形
-        self.image = pygame.image.load('images/ship.png')
+        self.filename = 'images/ship.png'
+        self.image = pygame.image.load(self.filename)
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -56,3 +57,9 @@ class Ship(Sprite):
     def center_ship(self):
         """让飞船在屏幕上居中"""
         self.center = self.screen_rect.centerx
+
+    def ship_hp(self):
+        """生命"""
+        self.filename = 'images/hp.png'
+        self.image = pygame.image.load(self.filename)
+        self.rect = self.image.get_rect()

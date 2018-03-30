@@ -48,6 +48,7 @@ class MyFrame(wx.Frame):  # 继承
 
     def btnClearEVT(self,event):
         #self.text_all.Clear()
+        pass
 
 app = wx.App()
 frame = MyFrame()

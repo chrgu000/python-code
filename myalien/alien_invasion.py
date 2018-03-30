@@ -27,7 +27,9 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode(
         (ai_settings.screen_width, ai_settings.screen_height))
-    pygame.display.set_caption("外星人入侵")
+    pygame.display.set_caption("闲来无事打飞机")
+    # 设置背景图
+    background = pygame.image.load(ai_settings.bg_image).convert_alpha()
 
     # 创建play按钮
     play_button = Button(ai_settings, screen, "Play")
@@ -61,8 +63,7 @@ def run_game():
             gf.update_bullets(ai_settings, screen, stats, sb, kes,
                         ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, sb, ship, aliens, bullets)
-            gf.update_kill_scores(kes)
-        gf.update_screen(ai_settings, screen, stats, sb, kes,
+        gf.update_screen(ai_settings, screen, background, stats, sb, kes,
                     ship, aliens, bullets, play_button)
 
 

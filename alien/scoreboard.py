@@ -103,6 +103,7 @@ class Scoreboard:
         """显示还余下多少飞船"""
         self.ships = Group()
         for ship_number in range(self.stats.ships_left):
+            Ship.filename = 'images/hp.png'
             ship = Ship(self.ai_settings, self.screen)
             ship.rect.x = 10 + ship_number * (ship.rect.width + 10)
             ship.rect.y = 10

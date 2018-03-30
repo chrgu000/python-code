@@ -116,6 +116,8 @@ def check_events(ai_settings, screen, stats, sb,
             mouse_x, mouse_y = pygame.mouse.get_pos()
             check_play_button(ai_settings, screen, sb, ship, aliens, bullets,
                         stats, play_button, mouse_x, mouse_y)
+            creat_pause_button(screen, stats, mouse_x, mouse_y)
+
 
 def check_play_button(ai_settings, screen, sb, ship, aliens, bullets,
                         stats, play_button, mouse_x, mouse_y):
@@ -128,14 +130,16 @@ def start_game(ai_settings, screen, stats, sb, ship, aliens, bullets):
     # 重置游戏设置
     ai_settings.initialize_dynamic_settings()
     # 隐藏光标
-    pygame.mouse.set_visible(False)
+    #pygame.mouse.set_visible(False)
     # 重置游戏统计信息
     stats.reset_stats()
     stats.game_active = True
     # 重置记分牌图像
-    sb.prep_score()
-    sb.prep_high_score()
-    sb.prep_level()
+    #sb.prep_score()
+    sb.prep_score_new()
+    sb.prep_high_score_new()
+    #sb.prep_level()
+    sb.prep_level_new()
     #sb.prep_ships_left()
     sb.prep_ships()
 
@@ -147,10 +151,26 @@ def start_game(ai_settings, screen, stats, sb, ship, aliens, bullets):
     create_fleet(ai_settings, screen, ship, aliens)
     ship.center_ship()
 
-def update_screen(ai_settings, screen, stats, sb, kes,
+def creat_pause_button(screen, stats, mouse_x=-1, mouse_y=-1):
+    """暂停按钮"""
+    pause_image = pygame.image.load('images/game_pause.png')
+    pause_image_rect = pause_image.get_rect()
+    screen_rect = screen.get_rect()
+    pause_image_rect.topright = screen_rect.topright
+    screen.blit(pause_image, pause_image_rect)
+    button_clicked = pause_image_rect.collidepoint(mouse_x, mouse_y)
+    if button_clicked:
+        if stats.game_active:
+            stats.game_active = False
+        else:
+            stats.game_active = True
+
+
+def update_screen(ai_settings, screen, background, stats, sb, kes,
                     ship, aliens, bullets, play_button):
     """屏幕刷新"""
-    screen.fill(ai_settings.bg_color)
+    #screen.fill(ai_settings.bg_color)  # 背景颜色刷新
+    screen.blit(background, (0,0))  # 背景图片刷新
     ship.blitme()
     kes.draw(screen)
 
@@ -170,6 +190,8 @@ def update_screen(ai_settings, screen, stats, sb, kes,
         play_button.draw_button()
 
     kes.update()
+    check_high_score(stats, sb)  # 更新最高分
+    creat_pause_button(screen, stats)
     # 让最近绘制的屏幕可见
     pygame.display.flip()
 
@@ -201,21 +223,24 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, kes, ship,
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if collisions:
+         # 击杀后更新得分
         for aliens in collisions.values():
-            sb.aline_dead_score = sb.rounded_score
-            stats.score += ai_settings.alien_points * len(aliens)
+            #sb.aline_dead_score = sb.rounded_score  #新得分显示
+            #stats.score += ai_settings.alien_points * len(aliens)
             sb.kill_scores_numbers = len(aliens)
-            sb.prep_score()
-            sb.aline_dead_score = sb.rounded_score - sb.aline_dead_score
+            #sb.prep_score()
+            #sb.prep_score_new()
+            #sb.aline_dead_score = sb.rounded_score - sb.aline_dead_score
             # 消灭的外星坐标
-        for aline in aliens:
-            #print(aline.rect.center, sb.aline_dead_score, end= '|||')
-            #print(aline.rect.center)
-            sb.aline_dead_x, sb.aline_dead_y = aline.rect.center
-            sb.prep_aline_point()
-            creat_kill_scores(ai_settings, screen, sb, kes)
-            #sb.prep_kill_scores()
-        check_high_score(stats, sb)
+        # 在击杀位置创建击杀特效编组
+            for aline in aliens:
+                #print(aline.rect.center, sb.aline_dead_score, end= '|||')
+                #print(aline.rect.center)
+                sb.aline_dead_x, sb.aline_dead_y = aline.rect.center
+                sb.prep_aline_point()
+                creat_kill_scores(ai_settings, screen, stats, sb, kes)
+                #sb.prep_kill_scores()
+        #check_high_score(stats, sb)  # 更新最高分
 
     if len(aliens) == 0:
         # 外星人杀完后删除现有的子弹并新建一群外星人
@@ -224,7 +249,8 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, kes, ship,
         # 加快游戏节奏
         ai_settings.increase_speed()
         stats.level += 1
-        sb.prep_level()
+        #sb.prep_level()
+        sb.prep_level_new()
         #sb.aline_dead_score = ai_settings.alien_points
 
         create_fleet(ai_settings, screen, ship, aliens)
@@ -274,7 +300,7 @@ def ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
-        pygame.mouse.set_visible(True)
+        pygame.mouse.set_visible(True)  # 鼠标指针可见
 
 def check_aliens_bottom(ai_settings, stats, screen, sb, ship, aliens, bullets):
     """检查是否有外得人到达了屏幕底端"""
@@ -289,28 +315,22 @@ def check_high_score(stats, sb):
     """检查是否诞生了新的最高分"""
     if stats.score > stats.high_score:
         stats.high_score = stats.score
-        sb.prep_high_score()
+        sb.prep_high_score_new()
     # 最高分存入文件
     with open('score.json', 'w') as f_obj:
         json.dump(stats.high_score, f_obj)
 
-def creat_kill_scores(ai_settings, screen, sb, kes):
+def creat_kill_scores(ai_settings, screen, stats, sb, kes):
     """创建一个击杀得分图"""
-    kill_scores = KillEffect(ai_settings, screen, sb, kes)
+    kill_scores = KillEffect(ai_settings, screen, stats, sb, kes)
     kill_scores.rect.x = sb.aline_dead_x
     kill_scores.rect.y = sb.aline_dead_y
     kes.add(kill_scores)
 
-def check_alien_kill_scores_collisions(ai_settings, sb, kes):
-    """击杀得分碰撞消失"""
-    # 删除到达位置的得分
-    for ke in kes.sprites():
-        if ke.rect.top >= sb.score_rect.bottom:
-            print("到达1")
-            kes.remove(ke)
 
 def update_kill_scores(kes):
     """检查击杀效果是否到达位置，并更新"""
+    # 得分数字渲染图替换为图片，此失效
     for ke in kes.sprites():
         if ke.check_edges():
             kes.remove(ke)

@@ -17,21 +17,22 @@ class Settings:
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (230, 230, 230)
+        self.bg_image = 'images/bg001.png'
 
         # 飞船的设置
-        self.ship_limit = 3
+        self.ship_limit = 3  # 生命次数
 
         # 子弹设置
-        self.bullet_width = 5
-        self.bullet_height = 20
-        self.bullet_color = 60, 60, 60
+        #self.bullet_width = 5
+        #self.bullet_height = 20
+        #self.bullet_color = 60, 60, 60
         self.bullets_allowed = 5
 
         # 外星人的设置
         self.fleet_drop_speed = 20
 
         # 击杀得分移动速度设置
-        self.kill_score_speed = 0.8
+        self.kill_score_speed = 1.8
 
         # 外星人加速值
         self.speedup_scale = 1.1
