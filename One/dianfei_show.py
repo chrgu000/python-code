@@ -133,9 +133,12 @@ class ShowFrame(wx.Frame):
         windows = self.list_sort(windows)
 
         # 设置颜色
-        windows[0].SetBackgroundColour('white')
+        #windows[0].SetBackgroundColour((50, 205, 50))
+        font = wx.Font(16, wx.DEFAULT, wx.NORMAL, wx.NORMAL, False, '微软雅黑')
+        windows[0].SetFont(font)
         for x in range(1, 4):
             windows[x].SetBackgroundColour('white')
+            windows[x].SetFont(font)
 
         # 返回布局和按顺序的控件列表
         return sizer, windows
