@@ -9,11 +9,19 @@
 '''
 
 import wx
-import dianfei_functions as df
+
+
+from main_frame import MainFrame
+
+
+
 
 app = wx.App()
 
-df.frame_show()
+frame = MainFrame()
+app.SetTopWindow(frame)
+frame.Show()
+
 
 app.MainLoop()
 
