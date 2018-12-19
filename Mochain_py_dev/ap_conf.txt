@@ -1,0 +1,24 @@
+#tar zxvf lnmp1.5.tar.gz
+#cd lnmp1.5 && LNMP_Auto="y" DBSelect="0" PHPSelect="8" SelectMalloc="1" ApacheSelect="2" ServerAdmin="webmaster@example.com" ./install.sh lamp
+#echo "IncludeOptional conf/vhost/*.conf" >> /usr/local/apache/conf/httpd.conf
+#mkdir /usr/local/apache/conf/vhost
+touch /usr/local/apache/conf/vhost/default.conf
+
+echo "<VirtualHost *:80>" >> /usr/local/apache/conf/vhost/default.conf
+echo "    ServerAdmin root@web.com" >> /usr/local/apache/conf/vhost/default.conf
+echo "    DocumentRoot \"/var/www/mikey\"" >> /usr/local/apache/conf/vhost/default.conf
+echo "    ServerName 127.0.0.1" >> /usr/local/apache/conf/vhost/default.conf
+echo "    ErrorLog \"| /usr/local/apache/bin/rotatelogs /home/wwwlogs/mikey-test-error_log_%Y%m%d 86400 480\"" >> /usr/local/apache/conf/vhost/default.conf
+echo "    CustomLog \"| /usr/local/apache/bin/rotatelogs /home/wwwlogs/mikey-test-access_log_%Y%m%d 86400 480\" common" >> /usr/local/apache/conf/vhost/default.conf
+echo "" >> /usr/local/apache/conf/vhost/default.conf
+echo "    <Directory \"/var/www/mikey\">" >> /usr/local/apache/conf/vhost/default.conf
+echo "        SetOutputFilter DEFLATE" >> /usr/local/apache/conf/vhost/default.conf
+echo "        Options FollowSymLinks" >> /usr/local/apache/conf/vhost/default.conf
+echo "        AllowOverride All" >> /usr/local/apache/conf/vhost/default.conf
+echo "        Order allow,deny" >> /usr/local/apache/conf/vhost/default.conf
+echo "        Allow from all" >> /usr/local/apache/conf/vhost/default.conf
+echo "        DirectoryIndex index.html index.php" >> /usr/local/apache/conf/vhost/default.conf
+echo "    </Directory>" >> /usr/local/apache/conf/vhost/default.conf
+echo "</VirtualHost>" >> /usr/local/apache/conf/vhost/default.conf
+
+systemctl start httpd

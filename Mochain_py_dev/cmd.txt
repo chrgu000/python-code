@@ -1,0 +1,2 @@
+yum install  zip -y
+yum install  screen -y
