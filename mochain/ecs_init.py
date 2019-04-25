@@ -7,23 +7,22 @@
 """
 阿里云服务器初始化：
 	挂载硬盘
-	修改ssh端口为6621
+	修改ssh端口为7221
 """
 import threading
 from server import Server
 
 
 hosts=[
-		'47.75.108.94',
-		'47.244.162.94',
-		'47.244.163.39',
-		'47.244.163.214',
+		'103.112.211.147',
+		'103.112.211.69',
+		'103.112.211.20',
 	]
 
 def server_init(host):
 	host=host
 	port = 22
-	password = 'H7ROa3WuEI'
+	password = '6c7dYzEB5'
 	# vmware
 	#password = 'wodemima'
 

@@ -24,5 +24,7 @@ echo "/dev/vdb1	/data	ext4	defaults	0 0" >> /etc/fstab
 fi
 
 # chang sshd port
-sed -i '18i\Port 6221' /etc/ssh/sshd_config
+sed -i '18i\Port 7221' /etc/ssh/sshd_config
+firewall-cmd --zone=public --add-port=7221/tcp --permanent
+firewall-cmd --reload
 systemctl restart sshd
