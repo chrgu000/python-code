@@ -11,27 +11,38 @@
 """
 import threading
 from server import Server
+import ss5
 
 
 hosts=[
-		'103.112.211.147',
-		'103.112.211.69',
-		'103.112.211.20',
+
+		'47.244.96.98',
+	'47.244.217.82',
+	'47.75.181.81',
+	'47.75.69.182',
+
 	]
 
 def server_init(host):
 	host=host
 	port = 22
-	password = '6c7dYzEB5'
-	# vmware
-	#password = 'wodemima'
+	password = r'Gxtl80Pbp4O3'
+	#password = 'wodemima'  # vmware
+	script_file = r'auto_format_disk.sh'
+	#script_file = r'install_jdk.sh'
+
 
 	my_server = Server(password=password, port=port, host=host)
 
-	my_server.upload_file(r'script/auto_format_disk.sh', 'auto_format_disk.sh')
+	#my_server.upload_file("./script/%s" % script_file, script_file)
+	#my_server.exec_cmd('chmod +x %s' % script_file)
+	#my_server.exec_cmd('sh %s' % script_file)
 
-	my_server.exec_cmd('chmod +x auto_format_disk.sh')
-	my_server.exec_cmd('./auto_format_disk.sh')
+    # windows 上传脚本文件格式需要转换，直接从github上下载执行
+    # 完成后删除脚本文件
+    my_server.exec_cmd('''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/mochain/script/{sf} \
+        && sh {sf} \
+        && rm -rf {sf}'''.format(sf = script_file))
 
 	# 安装软件包
 	#my_server.exec_cmd('netstat -ntlp' )

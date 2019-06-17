@@ -3,7 +3,7 @@
 
 yum -y remove *openjdk*
 
-wget https://github.com/frekele/oracle-java/releases/download/8u181-b13/jre-8u181-linux-x64.tar.gz
+wget https://github.com/frekele/oracle-java/releases/download/8u181-b13/jdk-8u181-linux-x64.tar.gz
 tar zxf jdk-8u181-linux-x64.tar.gz -C /usr/local/
 
 echo '' >> /etc/profile
