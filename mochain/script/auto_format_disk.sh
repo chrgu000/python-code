@@ -1,9 +1,10 @@
 #!/bin/sh
 # Auto format and mount first disk on /data
 
+disk_tow=`cat /proc/partitions | grep ".*da$" | awk '{print $4}' | cut -c 1`db
 # aliyun ECS disk is vda..vdb……
-if [ -e "/dev/vdb" ]; then
-fdisk /dev/vdb << EOF
+if [ -e "/dev/${disk_tow}" ]; then
+fdisk /dev/${disk_tow} << EOF
 n
 p
 1
@@ -13,14 +14,14 @@ wq
 EOF
 
 # format
-mkfs.ext4 /dev/vdb1
+mkfs.ext4 /dev/${disk_tow}1
 
 # mount to /data
 mkdir /data
-mount /dev/vdb1 /data
+mount /dev/${disk_tow}1 /data
 
 # auto mount disk onboot
-echo "/dev/vdb1	/data	ext4	defaults	0 0" >> /etc/fstab
+echo "/dev/${disk_tow}1	/data	ext4	defaults	0 0" >> /etc/fstab
 fi
 
 # chang sshd port
