@@ -11,25 +11,22 @@
 """
 import threading
 from server import Server
-import ss5
+#import ss5
 
 
 hosts=[
 
-		'47.244.96.98',
-	'47.244.217.82',
-	'47.75.181.81',
-	'47.75.69.182',
+		'10.0.0.12',
 
 	]
 
 def server_init(host):
 	host=host
-	port = 22
-	password = r'Gxtl80Pbp4O3'
+	port = 7221
+	password = r'0'
 	#password = 'wodemima'  # vmware
 	script_file = r'auto_format_disk.sh'
-	#script_file = r'install_jdk.sh'
+	script_file = r'install_jdk.sh'
 
 
 	my_server = Server(password=password, port=port, host=host)
@@ -40,9 +37,9 @@ def server_init(host):
 
     # windows 上传脚本文件格式需要转换，直接从github上下载执行
     # 完成后删除脚本文件
-    my_server.exec_cmd('''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/mochain/script/{sf} \
-        && sh {sf} \
-        && rm -rf {sf}'''.format(sf = script_file))
+	my_server.exec_cmd('''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/mochain/script/{sf} \
+    && sh {sf} \
+    && rm -rf {sf}'''.format(sf = script_file))
 
 	# 安装软件包
 	#my_server.exec_cmd('netstat -ntlp' )

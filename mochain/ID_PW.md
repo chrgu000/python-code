@@ -194,6 +194,7 @@ Apple ID 苹果开发者账号
 	Mariadb: 	root		V%I#QodimTF6fEv7 		3306
 				pms 		AOqG5Ht91g@asID7
 				apphost		wQZPMeSRAYPgin
+				liumeiti	md4zIKA0txO1
 	ftp：		www 		jLct18Sz				6601
 	User： 		jksync		JKsync2018				免信登陆 For Jenkins
 
@@ -393,12 +394,35 @@ mikeywallet<sup><font color=gray>Godaddy</font></sup>
 	内网IP： 		rm-j6chf3ic3i4ldtdcd.mysql.rds.aliyuncs.com
 	管理用户： 		dbadmin		q7e41LPWuUn3zD
 
-###### BTC-ETH币接口
+###### BTC币接口
 
 	公网IP： 		47.75.87.180
 	内网IP： 		172.31.234.39
 	管理密码： 		954961
 	SSHD： 		root		JoVRprCx7ZTIbf 	 	7221
+
+###### ETH币接口
+
+	公网IP： 		47.244.238.1
+	内网IP： 		172.31.234.40
+	管理密码： 		520469
+	SSHD： 		root		JoVRprCx7ZTIbf 	 	7221
+
+###### 测试01
+
+	公网IP： 		47.244.243.122
+	内网IP： 		172.31.234.42
+	管理密码： 		789913
+	SSHD： 		root		0Pc3u2xVtw7B 	 	7221
+
+###### 测试02
+
+	公网IP： 		47.244.236.149
+	内网IP： 		172.31.234.41
+	管理密码： 		964724
+	SSHD： 		root		0Pc3u2xVtw7B 	 	7221
+
+
 
 ###### 域名 
 
