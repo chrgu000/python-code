@@ -55,13 +55,13 @@ class BackupDB:
 
 			self.connected = True
 		except:
-			print("[ %s ] 连接失败，未备份！" % self.servername)
+			print("[ %s ] 连接失败！" % self.servername)
 			#exit()  # 连接失败退出任务
 			return False
 
 	def get_db_names(self):
 		"""获取数据库列表"""
-		# 创建游标
+		# 连接成功，创建游标
 		cur = self.db.cursor()
 		cur.execute("show databases")
 
