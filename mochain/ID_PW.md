@@ -271,6 +271,7 @@ mochain_co摩链官网
 	项目：
 		01-官网 		http://www.mochain.co
 		02-曾总官网 	http://qiye.mochain.co
+		03-IDC云主机景安	https://idc.mocloud.pro/backend/ 	dexmanage@mocloud.pro 		1Qaz2wsx
 
 
 dht控股

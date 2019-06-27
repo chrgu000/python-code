@@ -11,19 +11,20 @@
 """
 import threading
 from server import Server
-#import ss5
+import ss5
 
 
 hosts=[
 
-		'10.0.0.12',
+
+	'47.89.38.92',
 
 	]
 
 def server_init(host):
 	host=host
-	port = 7221
-	password = r'0'
+	port = 22
+	password = r'Chichuixin510098'
 	#password = 'wodemima'  # vmware
 	script_file = r'auto_format_disk.sh'
 	script_file = r'install_jdk.sh'

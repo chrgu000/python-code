@@ -21,3 +21,5 @@ if  ! ``grep -n "JAVA_HOME=" /etc/profile > /dev/null``; then
 fi
 # delete source file
 rm -rf jdk-8u212-linux-x64.tar.gz
+
+source /etc/profile

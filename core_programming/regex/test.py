@@ -8,4 +8,4 @@ script_file = r'auto_format_disk.sh'
 command = '''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/mochain/script/{sf} \
     && sh {sf} \
     && rm -rf {sf}'''.format(sf = script_file)
-print(command)
+print(s.strip().split(" "))
