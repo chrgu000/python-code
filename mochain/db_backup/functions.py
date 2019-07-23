@@ -74,7 +74,7 @@ class BackupDB:
 		print("正在备份 %s.%s ……" % (self.servername, db_name))
 		os.system(
 			"""
-			{mysqldump} -u{username} -p{password} -h {host} -P {port} ‘{db_name}’ | gzip > {badkup_filename}.gz
+			{mysqldump} -u{username} -p{password} -h {host} -P {port} {db_name} | gzip > {badkup_filename}.gz
 			""".format(
 					mysqldump=self.mysqldump,
 					username=self.username,
