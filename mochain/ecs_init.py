@@ -7,24 +7,24 @@
 """
 阿里云服务器初始化：
 	挂载硬盘
-	修改ssh端口为7221
+	修改ssh端口为7013
 """
 import threading
 from server import Server
-import ss5
+#import ss5
 
 
 hosts=[
 
 
-	'47.89.38.92',
+	'47.52.233.73',
 
 	]
 
 def server_init(host):
 	host=host
-	port = 22
-	password = r'Chichuixin510098'
+	port = 7013
+	password = r'qarwdJpfiF31'
 	#password = 'wodemima'  # vmware
 	script_file = r'auto_format_disk.sh'
 	script_file = r'install_jdk.sh'
