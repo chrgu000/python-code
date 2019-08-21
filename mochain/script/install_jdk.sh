@@ -18,10 +18,7 @@ if  ! ``grep -n "JAVA_HOME=" ~/.bashrc > /dev/null``; then
 	    echo 'export JRE_HOME=${JAVA_HOME}/jre' >> ~/.bashrc
 	    echo 'export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib' >> ~/.bashrc
 	    echo 'export  PATH=${JAVA_HOME}/bin:$PATH' >> ~/.bashrc
-        sleep 5
 	    source ~/.bashrc
 fi
 # delete source file
 rm -rf jdk-8u212-linux-x64.tar.gz
-
-source ~/.bashrc
