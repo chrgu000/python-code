@@ -38,7 +38,7 @@ def server_init(host):
 
     # windows 上传脚本文件格式需要转换，直接从github上下载执行
     # 完成后删除脚本文件
-	my_server.exec_cmd('''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/mochain/script/{sf} \
+	my_server.exec_cmd('''curl -LJO https://raw.githubusercontent.com/WWBING/python-code/master/operations/script/{sf} \
     && sh {sf} \
     && rm -rf {sf}'''.format(sf = script_file))
 
