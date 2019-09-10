@@ -2,3 +2,6 @@
 .DS_Store
 aliyun_sms_python
 .idea
+.vscode
+operations/script/install_jdk.sh
+__pycache__
