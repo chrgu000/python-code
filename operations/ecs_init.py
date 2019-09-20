@@ -17,14 +17,14 @@ from server import Server
 hosts=[
 
 
-	'47.52.233.73',
+	'52.193.91.3',
 
 	]
 
 def server_init(host):
 	host=host
-	port = 7013
-	password = r'qarwdJpfiF31'
+	port = 7202
+	password = r'K4aZ5bJURv'
 	#password = 'wodemima'  # vmware
 	script_file = r'auto_format_disk.sh'
 	script_file = r'install_jdk.sh'
