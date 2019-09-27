@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 """
 定制于监控业务出错时发送短信通知使用
@@ -24,7 +25,7 @@ class SMS():
             # 手机号码(只支持单个手机号)
             "mobile" : "19994411399",
             # 模板变量内容，多个变量中间用##或者$$隔开
-            "content" : "Geth-test02$$1.2.4.8$$erc20API$$09-21 15:30 出错重启了一次"
+            "content" : "13.231.45.60$$Geth-test02$$erc20API$$2019-09-23 10:55:12$$出错重启了一次"
         }
     def send(self):
         result = requests.get(self.url, params=self.data)

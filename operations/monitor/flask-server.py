@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 # 请求格式如下，用于服务器业务警告通知
-# curl -i -H "Content-Type: application/json" -X POST -d '{"mobile" : "19994411399", "content" : "Geth-test02$$1.2.4.8$$erc20API$$09-21 16:08 出错重启了一次"}' http://localhost:5000/foo
+# curl -i -H "Content-Type: application/json" -X POST -d '{"mobile" : "19994411399", "content" : "13.231.45.60$$Geth-test02$$erc20API$$2019-09-23 10:55:12$$出错重启了一次"}' http://localhost:5000/foo
+# 短信内容： 服务器{1}（{2}）的{3}在{4}发生错误：{5}
+
 from flask import Flask, abort, request 
 import json
-from send_sms import SMS
+from sms_chry import SMS
+
 
 app = Flask(__name__)
 
@@ -12,8 +16,7 @@ def foo():
     if not request.json:
         abort(400)
     # print("type: ", type(request.json))
-    # print(request.json['mobile'])
-    # print(request.json['content'])
+    # print(request.json)
     sms = SMS()
     # 获取参数
     result = request.json
