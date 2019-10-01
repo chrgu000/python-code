@@ -1,19 +1,4 @@
-from flask import Flask, abort, request 
-import json
-from send_sms import SMS
-
-
-app = Flask(__name__)
-
-@app.route('/foo', methods=['POST']) 
-def foo():
-    if not request.json:
-        abort(400)
-    print("type: ", type(request.json))
-    print(request.json)
-    
-    return json.dumps(request.json)
-
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+d = {"mobile" : "19994411399", "content" : "13.231.45.60$$Geth-test02$$erc20API$$2019-09-23 10:55:12$$出错重启了一次"}
+d1 = d['content'].split("$$")
+print(d1)
+print("服务器{0[0]}（{0[1]}）的{0[2]}在{0[3]}发生错误：{0[4]}".format(d1))

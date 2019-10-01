@@ -25,11 +25,15 @@ header = {
     "Connection": "keep-alive",
 
 }
-
-data = {    
+# 后台增加资产需要的参数
+data = {
+    # 钱包地址
     "address":"0ddx1ecbbf7735abe31d9a6251e9ed064ab1b5d9a4dd", 
-    "recharge_amount" : "2",    
-    "responsible" : "tt",    
+    # 添加金额
+    "recharge_amount" : "2",
+    # 操作人
+    "responsible" : "tt",
+    # 备注 
     "remark" : ""
 }
 
@@ -38,11 +42,13 @@ err = []  # 保存失败的
 
 # 屏蔽关于https的报错
 requests.packages.urllib3.disable_warnings()
-with requests.Session() as ret:
-    ret = requests.post(url, data=data, headers=header, verify=False, cookies=cookies)
+with requests.Session() as s:  # 持续会话
+    reponse = s.post(url, data=data, headers=header, verify=False, cookies=cookies)
 
-    # print(ret.text)
-    deposit = ret.json()
+    # print(reponse.text)
+    print(reponse.headers)
+    exit()
+    deposit = reponse.json()
     if deposit['code'] != '1':
         err.append("%s %s" % (data['address'], deposit['msg']))
     else:
