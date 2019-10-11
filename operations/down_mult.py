@@ -1,3 +1,7 @@
+"""
+批量图片url地址下载到本地保存
+"""
+
 import requests
 import os
 
