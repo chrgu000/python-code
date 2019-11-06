@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/server_add.css">
+
+</head>
+
+<body>
+    <div>
+        <div>
+            <form action="{{ request.path }}" method="post" style="display: block;">
+                <fieldset>
+                    <legend>&nbsp;服务器信息&nbsp;</legend>
+                    <label for="server_name">
+                        名称：<input type="text" name="server_name" placeholder="服务器名称" />
+                    </label>
+                    <label for="ip_wlan">
+                        公网IP：<input type="text" name="ip_wlan" placeholder="公网IP" />
+                    </label>
+                    <label for="ip_lan">
+                        内网IP：<input type="text" name="ip_lan" placeholder="内网IP" />
+                    </label>
+                    <label for="sshd">
+                        <!-- SSHname：<input type="text" name="sshd" placeholder="User"/> -->
+                        ssh: <textarea name="sshd" placeholder='用户名:密码:端口&#13;一条记录一行'></textarea>
+                    </label>
+                    <input type="submit" value="Submit" />
+                </fieldset>
+            </form>
+            <script type="text/javascript" src="/static/js/server_add.js"></script>
+        </div>
+        <div>
+            {% if data %}
+            <p>{{ data }}</p>
+            <table>
+                <thead>
+                    <tr>
+                        {% for d in data %}
+                        <th>{{ d }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for d in data %}
+                        <td>{{ data[d] }}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+
+            </table>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

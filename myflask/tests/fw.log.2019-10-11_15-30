@@ -1,0 +1,21 @@
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 173-854-301
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+Info message
+Warning msg
+Error msg!!!
+127.0.0.1 - - [11/Oct/2019 15:31:02] "GET / HTTP/1.1" 200 -
+Info message
+Warning msg
+Error msg!!!
+127.0.0.1 - - [11/Oct/2019 15:31:02] "GET / HTTP/1.1" 200 -
+Info message
+Warning msg
+Error msg!!!
+127.0.0.1 - - [11/Oct/2019 15:31:02] "GET / HTTP/1.1" 200 -
+Info message
+Warning msg
+Error msg!!!
+127.0.0.1 - - [11/Oct/2019 15:31:02] "GET / HTTP/1.1" 200 -
+ * Detected change in 'c:\\Users\\oerbin\\python-code\\monitor\\tests\\test-log.py', reloading

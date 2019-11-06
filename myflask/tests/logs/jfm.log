@@ -1,0 +1,4 @@
+[2019-10-11 17:08:46,108] [DESKTOP-2V73G0I] [172.17.204.33] [ERROR] [test-log.py] [line:11] this is error msg
+[2019-10-11 17:10:44,474] [DESKTOP-2V73G0I] [172.17.204.33] [WARNING] [test-log.py] [line:12] warning
+[2019-10-11 17:10:44,477] [DESKTOP-2V73G0I] [172.17.204.33] [ERROR] [test-log.py] [line:13] error
+[2019-10-11 17:10:44,516] [DESKTOP-2V73G0I] [172.17.204.33] [CRITICAL] [test-log.py] [line:14] fatal
