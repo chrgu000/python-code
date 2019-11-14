@@ -1,0 +1,42 @@
+﻿{% extends "base.html" %}
+
+{% block title %}业务警告通知{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="static/css/show_all.css">{% endblock %}
+
+{% block pagecontent %}
+<!-- <h2>调整浏览器窗口大小查看效果</h2> -->
+<img src="{{ url_for('static', filename='images/360safe.png')}}" alt="你的图片被外星人劫持了～～" />
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th id="w5">ID</th>
+                <th id="w10">IP</th>
+                <th id="w45">短信内容</th>
+                <th id="w10">接收手机号</th>
+                <th id="w5">状态</th>
+                <th id="w15">发送时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <td>{{ d.id }}</td>
+                <td>{{ d.ip_addr }}</td>
+                <td class="sms_info">{{ d.sms_info }}</td>
+                <td>{{ d.re_mobile }}</td>
+                {% if d.status=='失败' %}
+                <td><a href="#" data-toggle="tooltip" title="{{ d.fail_info }}"
+                        style="color: #FF0000;">{{ d.status }}</a>
+                </td>
+                {% else %}
+                <td>{{ d.status }}</td>
+                {% endif %}
+                <td>{{ d.send_time }}</td>
+            </tr>
+            {% endfor %}
+        <tbody>
+    </table>
+</div>
+{% endblock %}
