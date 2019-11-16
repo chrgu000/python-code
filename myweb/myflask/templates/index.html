@@ -16,6 +16,55 @@ MyFlask
 </style>
 {% endblock %}
 {% block pagecontent %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //上移
+        $("input.upbtn").each(function () {
+            $(this).click(function () {
+                var $tr = $(this).parents("tr");
+                if ($tr.index() != 0) {
+                    $tr.prev().before($tr); //在每个匹配的元素之前插入内容。
+                }
+            });
+        });
+        //下移
+        var trLength = $("input.downbtn").length;
+        $("input.downbtn").each(function () {
+            $(this).click(function () {
+                var $tr = $(this).parents("tr");
+                if ($tr.index() != trLength - 1) {
+                    $tr.next().after($tr); //在每个匹配的元素之后插入内容。
+                }
+            });
+        });
+    });
+</script>
+<table>
+    <tr>
+        <td><input type="text" /></td>
+        <td><input type="button" value="上移" class="upbtn" />
+            <input type="button" value="下移" class="downbtn" />
+        </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td><input type="button" value="上移" class="upbtn" />
+            <input type="button" value="下移" class="downbtn" />
+        </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td><input type="button" value="上移" class="upbtn" />
+            <input type="button" value="下移" class="downbtn" />
+        </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td><input type="button" value="上移" class="upbtn" />
+            <input type="button" value="下移" class="downbtn" />
+        </td>
+    </tr>
+</table>
 <div style="margin: 15px 15px 15px 15px;">
 
     <p>Index</p>
@@ -39,109 +88,100 @@ MyFlask
         <div class="modal-dialog" role="document" style="min-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <!-- <div class="text-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info btn-lg">添加数据项</button>
-                            <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown">
+                    <ul class="nav nav-pills navbar-right">
+                        <li class="active"><a href="#infoIP" data-toggle="tab">IP地址</a></li>
+                        <li><a href="#infoID" data-toggle="tab">远程桌面</a></li>
+                        <li><a href="#infoOther" data-toggle="tab">其它</a></li>
 
-                                <span class="caret"></span>
-
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">IP地址
-                                    </a></li>
-                                <li><a href="#">远程桌面</a></li>
-                                <li><a href="#">数据库</a></li>
-                                <li><a href="#">其它</a></li>
-                            </ul>
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="infoIP">
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            公网IP
+                                        </td>
+                                        <td>
+                                            内网IP
+                                        </td>
+                                        <td>
+                                            远程web密码
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <button type="button" class="btn btn-warning"
+                                                onclick="add_line(this);">增加行</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="content">
+                                </tbody>
+                            </table>
                         </div>
-                    </div> -->
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button> /* 右上角关闭小叉图标 */
-                </div>-->
-                <!-- <div class="modal-body"> -->
-                <div class="modal-footer" id="infoIP">
-                    <h3 class="modal-title text-center" id="infoTitle">IP地址</h3>
-                    <table class="table table-bordered" style="text-align: center;">
-                        <thead>
-                            <tr>
-                                <td>
-                                    公网IP
-                                </td>
-                                <td>
-                                    内网IP
-                                </td>
-                                <td>
-                                    远程web密码
-                                </td>
-                                <td class='td_Oper' id="buttonIP">
-                                    <button type="button" class="btn btn-warning " onclick="add_line(this);">增加行</button>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer" id="infoID">
-                    <h3 class="modal-title text-center" id="infoTitle">远程桌面信息</h3>
-                    <table class="table table-bordered" style="text-align: center;">
-                        <thead>
-                            <tr>
-                                <td>
-                                    用户名
-                                </td>
-                                <td>
-                                    密码
-                                </td>
-                                <td>
-                                    端口号
-                                </td>
-                                <td class='td_Oper'>
-                                    <button type="button" class="btn btn-warning " onclick="add_line(this);">增加行</button>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
 
-                </div>
-                <div class="modal-footer" id="infoOther">
-                    <h3 class="modal-title text-center" id="infoTitle">其它</h3>
-                    <table class="table table-bordered" style="text-align: center;">
-                        <thead>
-                            <tr>
-                                <td>
-                                    名称
-                                </td>
-                                <td>
-                                    值1
-                                </td>
-                                <td>
-                                    值2
-                                </td>
-                                <td>
-                                    值3
-                                </td>
-                                <td>
-                                    值4
-                                </td>
-                                <td class='td_Oper'>
-                                    <button type="button" class="btn btn-warning " onclick="add_line(this);">增加行</button>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody id="content">
-                        </tbody>
-                    </table>
+                        <div class="tab-pane fade" id="infoID">
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            用户名
+                                        </td>
+                                        <td>
+                                            密码
+                                        </td>
+                                        <td>
+                                            端口号
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <button type="button" class="btn btn-warning "
+                                                onclick="add_line(this);">增加行</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="content">
+                                </tbody>
+                            </table>
 
+                        </div>
+
+                        <div class="tab-pane fade" id="infoOther">
+                            <table class="table table-bordered" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            名称
+                                        </td>
+                                        <td>
+                                            值1
+                                        </td>
+                                        <td>
+                                            值2
+                                        </td>
+                                        <td>
+                                            值3
+                                        </td>
+                                        <td>
+                                            值4
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <button type="button" class="btn btn-warning "
+                                                onclick="add_line(this);">增加行</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody id="content">
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="modal-body text-center">
+
+                <div class="modal-footer text-center">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <button id="submit" type="button" class="btn btn-primary" onclick="SaveData()"
+                    <button id="submit" type="button" class="btn btn-primary" onclick="SubData()"
                         data-dismiss="modal">Save
                         changes</button>
                 </div>
@@ -150,5 +190,7 @@ MyFlask
     </div>
 
 </div>
+<script type="text/javascript" src="/static/js/jquery.color.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.color.plus-names.min.js"></script>
 <script type="text/javascript" src="/static/js/info_add.js"></script>
 {% endblock %}
